@@ -1,8 +1,6 @@
-import './App.css';
-
 function App() {
   return (
-    <div className="App">
+    <div>
       <h1>My League</h1>
     </div>
   );
