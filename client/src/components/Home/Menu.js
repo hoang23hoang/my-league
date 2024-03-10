@@ -52,7 +52,7 @@ export default function Menu() {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Link  href="#action1" className='nav-link'>Trang chủ</Link >
+                        <Link  href="/" className='nav-link'>Trang chủ</Link >
                         <Link  to="/find-teams" className='nav-link'>Tìm CLB</Link >
                         <Link  to="/create-team" className='nav-link'>Tạo CLB</Link >
                         <Link  href="#action2"className='nav-link'>Mua sắm</Link >

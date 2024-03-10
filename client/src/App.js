@@ -44,7 +44,12 @@ function App() {
           }
         />
         <Route
-          path="/find-teams" element={<FindTeam />}
+          path="/find-teams" element={
+            <>
+            <Menu/>
+            <FindTeam />
+            </>
+          }
         />
       </Routes>
     </BrowserRouter>
