@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.homeContent-container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0) 30%, rgb(0, 0, 0) 100%), url('../public/image/img-home.jpeg');
+    background-color: red;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    min-width: none;
+    min-height: 700px;
+}
+
+.homeContent-content {
+    position: absolute;
+    bottom: 40%;
+    left: 8%;
+}
+
+.homeContent-button {
+    position: absolute;
+    bottom: 30%;
+    right: 8%;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 50px;
+    row-gap: 30px;
+}
+.home-button{
+    border: black;
+    border-radius: 60% 0;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    background-color: black;
+    color: red;
+    font-size: 25px;
+}
+
+/* ======================= ĐÂY LÀ CSS CHO REGISTER-LOGIN FORM =============== */
+.register-login-container-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.register-login-form {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 30%;
+}
+
+.register-login-form h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.register-login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.register-login-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.register-login-form button:hover {
+  background-color: #0056b3;
+}
+
+/* ======================= ĐÂY LÀ CSS CHO CREATE TEAM ==============*/
+.create-team-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.create-team-form {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.create-team-form h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.create-team-form label {
+  font-weight: bold;
+}
+
+.create-team-form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.create-team-form button[type="button"],
+.create-team-form button[type="submit"] {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.create-team-form button[type="button"]:hover,
+.create-team-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.create-team-form h3 {
+  margin-top: 20px;
+}
+
+.create-team-form h4 {
+  margin-top: 10px;
+}
+
+.create-team-form p {
+  margin-bottom: 5px;
+}
+
+
+
+/* ======================= ĐÂY LÀ CSS CHO FOOTER ====================== */
+.Container-Footer {
+    padding-top: 1%;
+    color: white;
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 2%;
+    margin-top: 5%;
+  }
+  
+  .Box-Footer {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  
+  .List-Footer {
+    display: flex;
+    width: 100%;
+    margin-top: 1%;
+    height: 100%;
+  }
+  
+  .Content-Feature {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .Container-Icon {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .List-Link-Footer {
+    margin-top: 10%;
+    font-size: 13px;
+  }
+  
+  .Title-Feature{
+    font-size: 25px;
+  }
+  .Title-Feature:hover {
+    cursor: pointer;
+    color: grey;
+  }
+  
+  .List-Link-Footer:hover {
+    cursor: pointer;
+    color: grey;
+  }
+  
+  .Container-BackToTop {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 10%;
+    margin: 0% 2%;
+  }
+  
+  .Back-To-Top {
+    color: white;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  
+  .Back-To-Top:hover {
+    cursor: pointer;
+    color: grey;
+  }
+  
+  .Container-Social-Media {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 3%;
+  
+  }
+  
+  .Box-Social-Media {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+  }
+  
+  .Social-Media {
+    font-size: 13px;
+  }
+  
+  .Social-Media:hover {
+    cursor: pointer;
+    color: grey;
+  }
+  
+  /*============================ HẾT CSS CHO FOOTER ====================*/

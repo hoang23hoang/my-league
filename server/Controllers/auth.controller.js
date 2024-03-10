@@ -1,0 +1,67 @@
+import { playerModel } from "../Models/player.model.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken"
+
+export const register = async (req, res) => {
+    const { email, password, namePlayer, phone, age } = req.body;
+
+    // Kiểm tra xem email hoặc số điện thoại đã tồn tại trong cơ sở dữ liệu chưa
+    const existingPlayer = await playerModel.findOne({ $or: [{ email }, { phone }] });
+    if (existingPlayer) {
+        return res.status(400).send("ĐĂNG KÝ KHÔNG THÀNH CÔNG: Email hoặc số điện thoại đã được sử dụng !");
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const player = await playerModel.create({
+        namePlayer,
+        email,
+        password: hashedPassword,
+        phone,
+        age
+    });
+
+    res.status(200).send(player);
+}
+
+export const login = async (req, res) => {
+    const { email, password, phone } = req.body;
+
+    try {
+        const player = await playerModel.findOne({
+            phone: phone || { $ne: null },
+            email: email || { $ne: null },
+        });
+
+        if (!player) {
+            return res.status(404).send("Email or phone is not correct!");
+        }
+
+        const passwordMatch = await bcrypt.compare(password, player.password);
+        if (!passwordMatch) {
+            return res.status(401).send("Email or phone is not correct!");
+        }
+
+        const payload = {
+            id: player._id.toString(),
+            email: player.email,
+            phone: player.phone,
+            roles: player.roles,
+        }
+
+        const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_TOKEN, {
+            expiresIn: "30s",
+        });
+
+        const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_TOKEN, {
+            expiresIn: "1d",
+        });
+
+        // Gửi token về cho client
+        res.status(200).json({ accessToken, refreshToken });
+    } catch (error) {
+        console.error("Error during login:", error);
+        res.status(500).send("An error occurred during login.");
+    }
+}
