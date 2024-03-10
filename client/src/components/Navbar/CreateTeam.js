@@ -7,6 +7,7 @@ export default function CreateTeam() {
     const [colorShirt, setColorShirt] = useState('');
     const [players, setPlayers] = useState([]);
     const [emailOrPhone, setEmailOrPhone] = useState('');
+    const [place, setPlace] = useState('');
 
     const handleAddPlayer = async () => {
         try {
@@ -30,7 +31,7 @@ export default function CreateTeam() {
                 alert('You need to log in to create a team.');
                 return;
             }
-            const teamData = { nameTeam, logo, colorShirt, players };
+            const teamData = { nameTeam, logo, colorShirt, place, players };
             const response = await axios.post('http://localhost:3001/teams/createTeam', teamData,
             {headers: {authorization:  `Bearer ${token}`}});
             console.log(response.data);
@@ -38,6 +39,7 @@ export default function CreateTeam() {
             setNameTeam('');
             setLogo('');
             setColorShirt('');
+            setPlace('');
             setPlayers([]);
             alert('Team created successfully!');
         } catch (error) {
@@ -73,6 +75,12 @@ export default function CreateTeam() {
                 <input type="text" id="colorShirt" name="colorShirt"
                     value={colorShirt}
                     onChange={(e) => setColorShirt(e.target.value)}
+                    className="team-input" />
+                <br />
+                <label htmlFor="place" className="team-label">Place:</label>
+                <input type="text" id="place" name="place"
+                    value={place}
+                    onChange={(e) => setPlace(e.target.value)}
                     className="team-input" />
                 <br />
                 <label htmlFor="emailOrPhone" className="team-label">Add player by phone:</label>
