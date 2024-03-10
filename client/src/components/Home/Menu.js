@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import {Link} from 'react-router-dom';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 export default function Menu() {
@@ -16,15 +16,14 @@ export default function Menu() {
         const fetchData = async () => {
             try {
                 if (isLoggedIn) {
-                    // Sử dụng thư viện Axios để gửi yêu cầu GET đến URL cùng với query param
                     const response = await axios.get('http://localhost:3001/find/players', {
                         params: {
                             phone: emailOrPhone // Sử dụng giá trị emailOrPhone được truyền vào từ state
                         }
                     });
     
-                    // Lấy thông tin người dùng từ dữ liệu trả về
                     const userData = response.data;
+                    console.log(userData);
     
                     // Cập nhật state userData với thông tin người dùng được trả về từ máy chủ
                     setUserData(userData);
@@ -45,7 +44,7 @@ export default function Menu() {
     return (
         <Navbar expand="lg" className="bg-body-tertiary sticky-top">
             <Container fluid>
-                <Navbar.Brand href="#">Logo</Navbar.Brand>
+                <Navbar.Brand href="#" className='nav-link'>Logo</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -53,30 +52,21 @@ export default function Menu() {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Trang chủ</Nav.Link>
-                        <NavDropdown title="Giải đấu" id="navbarScrollingDropdown">
-                            <NavDropdown.Item href="#action3">Tìm giải đấu</NavDropdown.Item>
-                            <NavDropdown.Item href="#action4">Tạo giải đấu</NavDropdown.Item>
-                        </NavDropdown>
-                        <NavDropdown title="Đội thi đấu" id="navbarScrollingDropdown">
-                            <NavDropdown.Item href="#action3">Tạo đội</NavDropdown.Item>
-                            <NavDropdown.Item href="#action3">Tìm đội</NavDropdown.Item>
-                            <NavDropdown.Item href="#action4">Tạo đội hình</NavDropdown.Item>
-                        </NavDropdown>
-                        <Nav.Link href="#action2">Mua sắm</Nav.Link>
+                        <Link  href="#action1" className='nav-link'>Trang chủ</Link >
+                        <Link  to="/find-teams" className='nav-link'>Tìm CLB</Link >
+                        <Link  to="/create-team" className='nav-link'>Tạo CLB</Link >
+                        <Link  href="#action2"className='nav-link'>Mua sắm</Link >
                     </Nav>
                     {isLoggedIn ? (
                         <>
-                            <NavDropdown title={userData ? userData.name : ''} id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="#">Thông tin cá nhân</NavDropdown.Item>
-                                <NavDropdown.Item href="#">Cài đặt</NavDropdown.Item>
-                            </NavDropdown>
+                        <Link  href="#action2">haha</Link >
+                            
                             <Button variant="outline-danger" onClick={handleLogout}>Đăng xuất</Button>
                         </>
                     ) : (
                         <>
-                            <Nav.Link href="/auth/register">Tên đăng kí</Nav.Link>
-                            <Nav.Link href="/auth/login">Đăng nhập</Nav.Link>
+                            <Link  to="/auth/register" className='nav-link'>Đăng ký</Link >
+                            <Link  to="/auth/login" className='nav-link'>Đăng nhập</Link >
                         </>
                     )}
                 </Navbar.Collapse>

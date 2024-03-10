@@ -26,7 +26,12 @@ function App() {
           </>
         } />
         <Route
-          path="/create-team" element={<CreateTeam />}
+          path="/create-team" element={
+            <>
+              <Menu />
+              <CreateTeam />
+            </>
+          }
         />
         <Route
           path="/"

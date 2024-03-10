@@ -19,7 +19,9 @@ export default function Login() {
                 // Lưu trữ token vào localStorage
                 localStorage.setItem('accessToken', response.data.accessToken);
                 window.alert('Đăng nhập thành công!');
-                // Xử lý sau khi đăng nhập thành công, ví dụ: chuyển hướng hoặc làm gì đó
+                window.location.href = '/';
+                } else {
+                    throw new Error("Lỗi đăng nhập!");
             }
         } catch (error) {
             window.alert('Đăng nhập không thành công! Vui lòng kiểm tra lại thông tin.');
