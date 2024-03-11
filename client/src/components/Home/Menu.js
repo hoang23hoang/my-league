@@ -42,9 +42,12 @@ export default function Menu() {
     };
 
     return (
-        <Navbar expand="lg" className="bg-body-tertiary sticky-top">
+        <Navbar  expand="lg" className="sticky-top" bg="dark" variant="dark">
             <Container fluid>
-                <Navbar.Brand href="#" className='nav-link'>Logo</Navbar.Brand>
+                <Navbar.Brand className='nav-link'>
+                    <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFXeFZhDFCjYod8WHzK3WfuYm2Ajb54P0diWxFlh98xZt4QYxHzSQ_Y3g5GGzlnIHwkx8&usqp=CAU'
+                    style={{height:'40px'}}/>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -55,18 +58,18 @@ export default function Menu() {
                         <Link  to="/" className='nav-link'>Trang chủ</Link >
                         <Link  to="/find-teams" className='nav-link'>Tìm CLB</Link >
                         <Link  to="/create-team" className='nav-link'>Tạo CLB</Link >
-                        <Link  href="#action2"className='nav-link'>Mua sắm</Link >
+                        <Link  to="/my-team"className='nav-link'>Đội của tôi</Link >
                     </Nav>
                     {isLoggedIn ? (
                         <>
-                        <Link  href="#action2">haha</Link >
+                        <Link  to="/action2">haha</Link >
                             
                             <Button variant="outline-danger" onClick={handleLogout}>Đăng xuất</Button>
                         </>
                     ) : (
                         <>
-                            <Link  to="/auth/register" className='nav-link'>Đăng ký</Link >
-                            <Link  to="/auth/login" className='nav-link'>Đăng nhập</Link >
+                            <Link  to="/auth/register" className='nav-link' style={{color: 'gray'}}>Đăng ký</Link >
+                            <Link  to="/auth/login" className='nav-link'style={{color: 'gray'}}>Đăng nhập</Link >
                         </>
                     )}
                 </Navbar.Collapse>

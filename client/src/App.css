@@ -3,6 +3,9 @@
     padding: 0;
 }
 
+/*================== ĐÂY LÀ CSS CHO MENU  ==================*/
+
+/* ======================*/
 .homeContent-container {
     background-image: linear-gradient(rgba(0, 0, 0, 0) 30%, rgb(0, 0, 0) 100%), url('../public/image/img-home.jpeg');
     background-color: red;
@@ -143,6 +146,42 @@
 
 .create-team-form p {
   margin-bottom: 5px;
+}
+/*====================== HẾT CSS CHO CREATE TEAM ================*/
+
+/*====================== ĐÂY LÀ CSS CHO FIND TEAM ===============*/
+.container-findteams ul {
+  display: grid; /* Sử dụng CSS Grid */
+  grid-template-columns: repeat(4, 1fr); /* Tạo 4 cột có chiều rộng bằng nhau */
+  gap: 20px; /* Khoảng cách giữa các phần tử */
+  list-style-type: none; /* Loại bỏ dấu đầu dòng của danh sách */
+  padding: 0; /* Loại bỏ padding mặc định */
+}
+
+.container-findteams li {
+  border: 1px solid #ccc; /* Tạo viền xung quanh mỗi phần tử */
+  padding: 20px; /* Tạo khoảng cách bên trong mỗi phần tử */
+}
+
+.container-findteams li h2 {
+  font-size: 20px; /* Kích thước chữ cho tiêu đề của mỗi phần tử */
+  margin-bottom: 10px; /* Khoảng cách giữa tiêu đề và nội dung */
+}
+
+.container-findteams li p {
+  margin: 5px 0; /* Khoảng cách giữa các đoạn văn bản */
+}
+
+.container-findteams li button {
+  background-color: #007bff; /* Màu nền của nút */
+  color: #fff; /* Màu chữ của nút */
+  border: none; /* Loại bỏ đường viền */
+  padding: 5px 10px; /* Tạo khoảng cách giữa nút và nội dung bên trong */
+  cursor: pointer; /* Biến con trỏ thành dấu nhấp chuột khi di chuột qua */
+}
+
+.container-findteams li button:hover {
+  background-color: #0056b3; /* Màu nền của nút khi di chuột qua */
 }
 
 

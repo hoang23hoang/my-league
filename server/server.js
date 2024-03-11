@@ -8,6 +8,7 @@ import createTeamRouter from './Routes/createTeam.route.js';
 import addToTeamRouter from './Routes/addToTeam.route.js';
 import findPlayerRouter from './Routes/findPlayer.router.js';
 import findTeamRouter from './Routes/findTeam.route.js';
+import myTeamRouter from './Routes/myTeam.route.js';
 
 dotenv.config();
 const server = express();
@@ -25,6 +26,7 @@ server.use('/team', uploadRouter);
 server.use('/teams',createTeamRouter);
 server.use('/add-player-to-team',addToTeamRouter);
 server.use('/find',findPlayerRouter,findTeamRouter);
+server.use('/player',myTeamRouter)
 server.listen(port, () => {
     console.log('Server is listening on port', port);
 });

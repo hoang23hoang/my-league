@@ -51,14 +51,13 @@ export const login = async (req, res) => {
         }
 
         const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_TOKEN, {
-            expiresIn: "30s",
+            expiresIn: "20m",
         });
 
         const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_TOKEN, {
             expiresIn: "1d",
         });
 
-        // Gửi token về cho client
         res.status(200).json({ accessToken, refreshToken });
     } catch (error) {
         console.error("Error during login:", error);

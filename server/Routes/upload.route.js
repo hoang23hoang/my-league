@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import { v2 as cloudinary} from 'cloudinary';
+import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import dotenv from 'dotenv';
 
@@ -19,14 +19,13 @@ const storage = new CloudinaryStorage({
   params: {
     folder: 'upload',
     allowed_formats: ['jpg', 'png', 'gif'],
-    public_id: (req, file) => 'computed-filename-using-request',
+    public_id: (req, file) => 'image_myleague_' + Date.now(),
   },
 })
 
-
 uploadRouter.post('/upload', multer({ storage: storage }).single('file'), (req, res) => {
   console.log(req.file);
-  res.json(req.file);
+  res.json(req.file.path); 
 })
 
 export default uploadRouter;

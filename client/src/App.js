@@ -7,6 +7,7 @@ import Login from "./components/Login/login.js";
 import Footer from "./components/Home/Footer.js";
 import CreateTeam from "./components/Navbar/CreateTeam.js";
 import FindTeam from "./components/Navbar/FindTeam.js";
+import MyTeam from "./components/Navbar/MyTeam.js";
 
 
 function App() {
@@ -40,6 +41,15 @@ function App() {
               <Menu />
               <HomeContent />
               <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/my-team"
+          element={
+            <>
+              <Menu/>
+              <MyTeam/>
             </>
           }
         />

@@ -2,7 +2,7 @@ import { teamModel } from "../Models/team.model.js";
 
 const createTeam = async (req, res) => {
     try {
-        const { nameTeam, logo, colorShirt, players } = req.body;
+        const { nameTeam, logo, colorShirt, players,avatar } = req.body;
 
         const existingTeam = await teamModel.findOne({ nameTeam: nameTeam });
 
@@ -14,7 +14,8 @@ const createTeam = async (req, res) => {
             nameTeam,
             logo,
             colorShirt,
-            players
+            players,
+            avatar
         });
 
         const savedTeam = await newTeam.save();
