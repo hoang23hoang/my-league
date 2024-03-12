@@ -14,9 +14,8 @@ export default function Login() {
             };
 
             const response = await axios.post('http://localhost:3001/auth/login', loginData);
-            console.log(response.data); // Log kết quả từ be
+            console.log(response.data); 
             if (response.data.accessToken) {
-                // Lưu trữ token vào localStorage
                 localStorage.setItem('accessToken', response.data.accessToken);
                 window.alert('Đăng nhập thành công!');
                 window.location.href = '/';

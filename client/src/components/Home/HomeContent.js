@@ -9,10 +9,10 @@ export default function HomeContent() {
                 <h1>Quản lý đội thể thao đơn giản!</h1>
             </div>
             <div className="homeContent-button">
-                <button className="home-button">Tạo giải đấu</button>
-                <button className="home-button">Tìm giải đấu</button>
-                <button className="home-button">Tạo đội hình</button>
+                <button className="home-button">Tạo Team</button>
+                <button className="home-button">Tìm Team</button>
                 <button className="home-button">Quản lý đội</button>
+                <button className="home-button">Highlight</button>
             </div>
         </div>
     )

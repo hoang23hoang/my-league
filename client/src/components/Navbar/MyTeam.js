@@ -3,28 +3,25 @@ import axios from 'axios';
 
 const MyTeam = () => {
     const [teamData, setTeamData] = useState(null);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchTeamData = async () => {
             try {
                 const token = localStorage.getItem('accessToken');
-                const response = await axios.get('http://localhost:3001/player/my-team', { headers: { authorization: `Bearer ${token}` } });
-                console.log(response);
+                if (!token) {
+                    alert('Bạn phải đăng nhập để xem thông tin này !');
+                    window.location.href = 'http://localhost:3000/auth/login';
+                }
+                const response = await axios.get('http://localhost:3001/player/my-team',
+                    { headers: { authorization: `Bearer ${token}` } });
                 setTeamData(response.data.team);
-                setLoading(false);
             } catch (error) {
                 console.error('Error fetching team data:', error);
-                setLoading(false);
             }
         };
 
         fetchTeamData();
     }, []);
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
 
     if (!teamData) {
         return <div>Team not found</div>;

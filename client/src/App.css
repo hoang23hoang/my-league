@@ -184,6 +184,66 @@
   background-color: #0056b3; /* Màu nền của nút khi di chuột qua */
 }
 
+/*================= ĐÂY LÀ CSS CHO HIGHLIGHT ==================*/
+/* Reset CSS */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.highlight-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-page__title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.highlight-page__subtitle {
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.highlight-page__file-input {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.highlight-page__upload-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.highlight-page__upload-button:hover {
+  background-color: #0056b3;
+}
+
+.highlight-page__image {
+  display: block;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .highlight-page {
+      padding: 15px;
+  }
+}
+
 
 
 /* ======================= ĐÂY LÀ CSS CHO FOOTER ====================== */

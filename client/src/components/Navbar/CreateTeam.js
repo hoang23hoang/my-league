@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
-
 export default function CreateTeam() {
     const [nameTeam, setNameTeam] = useState('');
     const [logo, setLogo] = useState('');
@@ -12,6 +11,22 @@ export default function CreateTeam() {
     const [avatarPreview, setAvatarPreview] = useState(null);
     const [logoPreview, setLogoPreview] = useState(null);
 
+    useEffect(() => {
+        const checkToken = async () => {
+            try {
+                const token = localStorage.getItem('accessToken');
+                if (!token) {
+                    alert('You need to log in to access this page.');
+                    window.location.href = 'http://localhost:3000/auth/login';
+                    return;
+                }
+            } catch (error) {
+                console.error('Error checking token:', error);
+            }
+        };
+
+        checkToken();
+    }, []);
     const handleAddPlayer = async () => {
         try {
             const response = await axios.get(`http://localhost:3001/find/players?phone=${emailOrPhone}`);
@@ -31,8 +46,8 @@ export default function CreateTeam() {
         try {
             const token = localStorage.getItem('accessToken');
             if (!token) {
-                alert('You need to log in to create a team.');
-                return;
+                alert('Bạn phải đăng nhập để tạo team !');
+                window.location.href = 'http://localhost:3000/auth/login';
             }
             const teamData = { nameTeam, logo, colorShirt, place, players };
             const response = await axios.post('http://localhost:3001/teams/createTeam', teamData,

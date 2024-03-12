@@ -8,6 +8,7 @@ import Footer from "./components/Home/Footer.js";
 import CreateTeam from "./components/Navbar/CreateTeam.js";
 import FindTeam from "./components/Navbar/FindTeam.js";
 import MyTeam from "./components/Navbar/MyTeam.js";
+import HighlightPage from "./components/Navbar/Highlight.js";
 
 
 function App() {
@@ -61,7 +62,18 @@ function App() {
             </>
           }
         />
+        <Route
+          path="/highlight"
+          element={
+            <>
+              <Menu />
+              <HighlightPage />
+              <Footer />
+            </>
+          }
+        />
       </Routes>
+      
     </BrowserRouter>
   );
 }
