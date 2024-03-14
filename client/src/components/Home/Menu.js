@@ -57,6 +57,7 @@ export default function Menu() {
                         <Link to="/find-teams" className='nav-link'>Tìm CLB</Link>
                         <Link to="/create-team" className='nav-link'>Tạo CLB</Link>
                         <Link to="/my-team" className='nav-link'>Đội của tôi</Link>
+                        <Link to="/highlight" className='nav-link'>Highlight</Link>
                     </Nav>
                     {isLoggedIn ? (
                         <>

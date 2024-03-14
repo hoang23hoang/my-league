@@ -1,15 +1,12 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
 export default function CreateTeam() {
     const [nameTeam, setNameTeam] = useState('');
-    const [logo, setLogo] = useState('');
     const [colorShirt, setColorShirt] = useState('');
     const [players, setPlayers] = useState([]);
     const [emailOrPhone, setEmailOrPhone] = useState('');
     const [place, setPlace] = useState('');
-    const [avatar, setAvatar] = useState('');
-    const [avatarPreview, setAvatarPreview] = useState(null);
-    const [logoPreview, setLogoPreview] = useState(null);
 
     useEffect(() => {
         const checkToken = async () => {
@@ -27,6 +24,7 @@ export default function CreateTeam() {
 
         checkToken();
     }, []);
+
     const handleAddPlayer = async () => {
         try {
             const response = await axios.get(`http://localhost:3001/find/players?phone=${emailOrPhone}`);
@@ -49,13 +47,12 @@ export default function CreateTeam() {
                 alert('Bạn phải đăng nhập để tạo team !');
                 window.location.href = 'http://localhost:3000/auth/login';
             }
-            const teamData = { nameTeam, logo, colorShirt, place, players };
+            const teamData = { nameTeam, colorShirt, place, players };
             const response = await axios.post('http://localhost:3001/teams/createTeam', teamData,
                 { headers: { authorization: `Bearer ${token}` } });
             console.log(response.data);
 
             setNameTeam('');
-            setLogo('');
             setColorShirt('');
             setPlace('');
             setPlayers([]);
@@ -71,21 +68,11 @@ export default function CreateTeam() {
         updatedPlayers[index].shirtNumber = event.target.value;
         setPlayers(updatedPlayers);
     };
+
     const handleRemovePlayer = (index) => {
         const updatedPlayers = [...players];
         updatedPlayers.splice(index, 1);
         setPlayers(updatedPlayers);
-    };
-    const handleLogoChange = (e) => {
-        const file = e.target.files[0];
-        setLogo(file);
-        setLogoPreview(URL.createObjectURL(file)); // Tạo URL dữ liệu cho ảnh đã chọn và gán nó vào logoPreview
-    };
-
-    const handleAvatarChange = (e) => {
-        const file = e.target.files[0];
-        setAvatar(file);
-        setAvatarPreview(URL.createObjectURL(file)); // Tạo URL dữ liệu cho ảnh đã chọn và gán nó vào avatarPreview
     };
 
     return (
@@ -98,13 +85,6 @@ export default function CreateTeam() {
                         value={nameTeam}
                         onChange={(e) => setNameTeam(e.target.value)}
                         className="team-input" />
-                    <br />
-                    <label htmlFor="logo" className="team-label">Logo:</label>
-                    <input type="file" id="logo" name="logo"
-                        onChange={(e) => handleLogoChange(e)}
-                        className="team-input" />
-                    {logoPreview && <img src={logoPreview} alt="logo preview" />} {/* Hiển thị trước ảnh logo nếu đã chọn */}
-                    <br />
                     <br />
                     <label htmlFor="colorShirt" className="team-label">Color Shirt:</label>
                     <input type="text" id="colorShirt" name="colorShirt"
@@ -139,11 +119,6 @@ export default function CreateTeam() {
                                         value={player.shirtNumber}
                                         onChange={(e) => handleShirtNumberChange(e, index)}
                                         className="shirt-number-input" /></p>
-                                    <label htmlFor="avatar" className="team-label">Avatar:</label>
-                                    <input type="file" id="avatar" name="avatar"
-                                        onChange={(e) => handleAvatarChange(e)}
-                                        className="team-input" />
-                                    {avatarPreview && <img src={avatarPreview} alt="avatar preview" />} {/* Hiển thị trước ảnh avatar nếu đã chọn */}
                                     <button type="button" onClick={() => handleRemovePlayer(index)} className="remove-player-button">Remove Player</button>
                                 </div>
                             ))}
@@ -153,6 +128,5 @@ export default function CreateTeam() {
                 </form>
             </div>
         </div>
-
     );
 }

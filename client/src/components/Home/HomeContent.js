@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 export default function HomeContent() {
     return (
@@ -9,10 +9,11 @@ export default function HomeContent() {
                 <h1>Quản lý đội thể thao đơn giản!</h1>
             </div>
             <div className="homeContent-button">
-                <button className="home-button">Tạo Team</button>
-                <button className="home-button">Tìm Team</button>
-                <button className="home-button">Quản lý đội</button>
-                <button className="home-button">Highlight</button>
+                <button className="home-button"><Link to="/find-teams" className='nav-link'>Tìm CLB</Link></button>
+                <button className="home-button"><Link to="/create-team" className='nav-link'>Tạo CLB</Link></button>
+                <button className="home-button"><Link to="/my-team" className='nav-link'>Đội của tôi</Link></button>
+                <button className="home-button"><Link to="/highlight" className='nav-link'>Highlight</Link></button>
+
             </div>
         </div>
     )

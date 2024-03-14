@@ -9,7 +9,8 @@ export default function Login() {
         event.preventDefault();
         try {
             const loginData = {
-                emailOrPhone: emailOrPhone,
+                email: emailOrPhone,
+                phone: emailOrPhone, 
                 password: password
             };
 

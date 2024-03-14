@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { Link } from 'react-router-dom';
 export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,9 +17,9 @@ export default function Register() {
                 namePlayer,
                 age
             });
-            console.log(response.data); // Log kết quả từ backend
-            window.alert('Đăng ký thành công!'); // Hiển thị alert thành công
-            // Có thể thực hiện thêm các hành động khác sau khi đăng ký thành công
+            console.log(response.data);
+            window.alert('Đăng ký thành công!'); 
+            window.location.href = '/';
         } catch (error) {
             if (error.response && error.response.data) {
                 window.alert(error.response.data); // Hiển thị alert lỗi
@@ -64,8 +64,8 @@ export default function Register() {
                         value={age}
                         onChange={(e) => setAge(e.target.value)}
                     /><br />
+                    <span>Bạn đã có tài khoản ?<Link to='/auth/login' className='nav-link'>Đăng nhập</Link></span>
                     <button onClick={handleRegister}>Đăng ký</button>
-                    <p>Bạn đã có tài khoản ?<a href='/auth/login'>Đăng nhập</a></p>
                 </div>
             </div>
         </div>

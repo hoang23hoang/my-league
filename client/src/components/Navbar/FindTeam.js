@@ -20,21 +20,21 @@ export default function FindTeam() {
     };
 
     return (
-        <div className='container-findteams'>
-            <h1>All Teams</h1>
-            <div>
+        <div className='container-findteam'>
+            <h1 style={{display: 'flex',justifyContent:'center',fontFamily: "Angkor",fontSize:50,margin: 50}}>All Teams</h1>
+            <div className='box-findteam'>
                 <ul>
                     {teams.length === 0 ? (
                         <li>No Teams Found</li>
                     ) : (
                         teams.map((team, index) => (
-                            <div>
+                            <div className='content-findteam'>
                                 <li key={team._id}>
-                                    <h2>{team.nameTeam}</h2>
-                                    {team.logo && <p>Logo: <img src={team.logo} alt="Team Logo" /></p>}
-                                    {team.colorShirt && <p>Color Shirt: {team.colorShirt}</p>}
-                                    <p>Member Count: {team.memberCount}</p>
-                                    <button>Liên hệ</button>
+                                    <h3>CLB: {team.nameTeam}</h3>
+                                    <h2>Nơi sinh hoạt:{team.place}</h2>
+                                    {team.colorShirt && <p>Màu áo đội: {team.colorShirt}</p>}
+                                    <p>Số thành viên: {team.memberCount}</p>
+                                    <button className='button-findteam'>Liên hệ</button>
                                 </li>
                             </div>
                         ))

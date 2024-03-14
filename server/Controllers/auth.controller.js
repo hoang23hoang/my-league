@@ -29,11 +29,14 @@ export const login = async (req, res) => {
     const { email, password, phone } = req.body;
 
     try {
-        const player = await playerModel.findOne({
-            phone: phone || { $ne: null },
-            email: email || { $ne: null },
-        });
-
+        const playerByEmail = await playerModel.findOne({ email: email });
+        const playerByPhone = await playerModel.findOne({ phone: phone });
+        
+        const player = playerByEmail || playerByPhone;
+        
+        if (!player) {
+            return res.status(404).send("Email or phone is not correct!");
+        }
         if (!player) {
             return res.status(404).send("Email or phone is not correct!");
         }

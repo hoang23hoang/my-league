@@ -1,10 +1,10 @@
 import { teamModel } from "../Models/team.model.js";
 
-const createTeam = async (req, res) => {
+export const createTeam = async (req, res) => {
     try {
-        const { nameTeam, logo, colorShirt, players,avatar } = req.body;
+        const { nameTeam, logo, colorShirt, players, place } = req.body;
 
-        const existingTeam = await teamModel.findOne({ nameTeam: nameTeam });
+        const existingTeam = await teamModel.findOne({ nameTeam });
 
         if (existingTeam) {
             return res.status(400).json({ message: "Tên đội bóng đã tồn tại trong cơ sở dữ liệu" });
@@ -15,7 +15,7 @@ const createTeam = async (req, res) => {
             logo,
             colorShirt,
             players,
-            avatar
+            place // Lưu trường place vào cơ sở dữ liệu
         });
 
         const savedTeam = await newTeam.save();
@@ -26,5 +26,3 @@ const createTeam = async (req, res) => {
         res.status(500).json({ message: "Error creating team" });
     }
 };
-
-export { createTeam };

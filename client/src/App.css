@@ -149,40 +149,6 @@
 }
 /*====================== HẾT CSS CHO CREATE TEAM ================*/
 
-/*====================== ĐÂY LÀ CSS CHO FIND TEAM ===============*/
-.container-findteams ul {
-  display: grid; /* Sử dụng CSS Grid */
-  grid-template-columns: repeat(4, 1fr); /* Tạo 4 cột có chiều rộng bằng nhau */
-  gap: 20px; /* Khoảng cách giữa các phần tử */
-  list-style-type: none; /* Loại bỏ dấu đầu dòng của danh sách */
-  padding: 0; /* Loại bỏ padding mặc định */
-}
-
-.container-findteams li {
-  border: 1px solid #ccc; /* Tạo viền xung quanh mỗi phần tử */
-  padding: 20px; /* Tạo khoảng cách bên trong mỗi phần tử */
-}
-
-.container-findteams li h2 {
-  font-size: 20px; /* Kích thước chữ cho tiêu đề của mỗi phần tử */
-  margin-bottom: 10px; /* Khoảng cách giữa tiêu đề và nội dung */
-}
-
-.container-findteams li p {
-  margin: 5px 0; /* Khoảng cách giữa các đoạn văn bản */
-}
-
-.container-findteams li button {
-  background-color: #007bff; /* Màu nền của nút */
-  color: #fff; /* Màu chữ của nút */
-  border: none; /* Loại bỏ đường viền */
-  padding: 5px 10px; /* Tạo khoảng cách giữa nút và nội dung bên trong */
-  cursor: pointer; /* Biến con trỏ thành dấu nhấp chuột khi di chuột qua */
-}
-
-.container-findteams li button:hover {
-  background-color: #0056b3; /* Màu nền của nút khi di chuột qua */
-}
 
 /*================= ĐÂY LÀ CSS CHO HIGHLIGHT ==================*/
 /* Reset CSS */
@@ -247,101 +213,83 @@
 
 
 /* ======================= ĐÂY LÀ CSS CHO FOOTER ====================== */
-.Container-Footer {
-    padding-top: 1%;
-    color: white;
-    background-color: black;
-    height: 100%;
-    width: 100%;
-    padding-bottom: 2%;
-    margin-top: 5%;
-  }
-  
-  .Box-Footer {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 5%;
-    margin-bottom: 5%;
-  }
-  
-  .List-Footer {
-    display: flex;
-    width: 100%;
-    margin-top: 1%;
-    height: 100%;
-  }
-  
-  .Content-Feature {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .Container-Icon {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .List-Link-Footer {
-    margin-top: 10%;
-    font-size: 13px;
-  }
-  
-  .Title-Feature{
-    font-size: 25px;
-  }
-  .Title-Feature:hover {
-    cursor: pointer;
-    color: grey;
-  }
-  
-  .List-Link-Footer:hover {
-    cursor: pointer;
-    color: grey;
-  }
-  
-  .Container-BackToTop {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 10%;
-    margin: 0% 2%;
-  }
-  
-  .Back-To-Top {
-    color: white;
-    font-size: 13px;
-    text-decoration: none;
-  }
-  
-  .Back-To-Top:hover {
-    cursor: pointer;
-    color: grey;
-  }
-  
-  .Container-Social-Media {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    margin-top: 3%;
-  
-  }
-  
-  .Box-Social-Media {
-    display: flex;
-    justify-content: space-around;
-    width: 50%;
-  }
-  
-  .Social-Media {
-    font-size: 13px;
-  }
-  
-  .Social-Media:hover {
-    cursor: pointer;
-    color: grey;
-  }
-  
+.myleague-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.myleague-footer {
+  width: 80%;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.myleague-footer p {
+  margin: 0.5rem 0;
+}
+
+.myleague-community {
+  width: 80%;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.myleague-community button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
   /*============================ HẾT CSS CHO FOOTER ====================*/
+
+
+  /*==================== ĐÂY LÀ CSS CHO FINDTEAM PAGE ================*/
+.container-findteam ul {
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  list-style-type: none;
+  padding: 0; 
+  margin: 1rem;
+}
+
+.container-findteam li {
+  border: 1px solid #ccc; 
+  padding: 20px; 
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  
+}
+.container-findteam li h2 {
+  font-size: 20px; 
+  margin-bottom: 10px; 
+}
+
+.container-findteam li p {
+  margin: 5px 0;
+}
+
+.container-findteam li button {
+  background-color: #007bff; 
+  color: #fff; 
+  border: none; 
+  padding: 5px 10px; 
+  cursor: pointer; 
+}
+
+.container-findteam li button:hover {
+  background-color: #0056b3; 
+}
+.button-findteam{
+  display: flex;
+  align-self: center;
+  border-radius: 20px;
+}
