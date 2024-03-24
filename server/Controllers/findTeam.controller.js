@@ -11,6 +11,7 @@ export const getTeam = async (req, res) => {
                 return {
                     _id: team._id,
                     nameTeam: team.nameTeam,
+                    place:team.place,
                     logo: team.logo,
                     colorShirt: team.colorShirt,
                     memberCount: memberCount

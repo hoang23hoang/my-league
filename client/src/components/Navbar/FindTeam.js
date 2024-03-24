@@ -32,8 +32,8 @@ export default function FindTeam() {
                                 <li key={team._id}>
                                     <h3>CLB: {team.nameTeam}</h3>
                                     <h2>Nơi sinh hoạt:{team.place}</h2>
-                                    {team.colorShirt && <p>Màu áo đội: {team.colorShirt}</p>}
-                                    <p>Số thành viên: {team.memberCount}</p>
+                                    {team.colorShirt && <h6>Màu áo đội: {team.colorShirt}</h6>}
+                                    <h6>Số thành viên: {team.memberCount}</h6>
                                     <button className='button-findteam'>Liên hệ</button>
                                 </li>
                             </div>

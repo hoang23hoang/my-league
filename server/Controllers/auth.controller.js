@@ -48,6 +48,7 @@ export const login = async (req, res) => {
 
         const payload = {
             id: player._id.toString(),
+            namePlayer: player.namePlayer,
             email: player.email,
             phone: player.phone,
             roles: player.roles,
@@ -67,3 +68,15 @@ export const login = async (req, res) => {
         res.status(500).send("An error occurred during login.");
     }
 }
+
+export const logout = async (req, res) => {
+    try {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+
+        res.status(200).send("Logged out successfully.");
+    } catch (error) {
+        console.error("Error during logout:", error);
+        res.status(500).send("An error occurred during logout.");
+    }
+};

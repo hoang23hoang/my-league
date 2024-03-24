@@ -19,28 +19,66 @@ const MyTeam = () => {
                 console.error('Error fetching team data:', error);
             }
         };
-
         fetchTeamData();
     }, []);
 
+    const handleRemovePlayer = async (playerId) => {
+        try {
+            const token = localStorage.getItem('accessToken');
+            if (!token) {
+                alert('Bạn phải đăng nhập để thực hiện thao tác này !');
+                return;
+            }
+            await axios.post('http://localhost:3001/add-player-to-team/remove-from-team', {
+                playerId: playerId,
+                teamId: teamData._id
+            }, {
+                headers: { authorization: `Bearer ${token}` }
+            });
+            // Cập nhật lại danh sách thành viên sau khi xóa
+            setTeamData(prevTeamData => ({
+                ...prevTeamData,
+                players: prevTeamData.players.filter(id => id !== playerId)
+            }));
+        } catch (error) {
+            console.error('Error removing player:', error);
+        }
+    };
+
+    const handleDeleteTeam = async () => {
+        try {
+            const token = localStorage.getItem('accessToken');
+            if (!token) {
+                alert('Bạn phải đăng nhập để thực hiện thao tác này !');
+                return;
+            }
+            await axios.delete(`http://localhost:3001/teams/delete-team/${teamData._id}`, {
+                headers: { authorization: `Bearer ${token}` }
+            });
+            window.location.reload();
+        } catch (error) {
+            console.error('Error deleting team:', error);
+        }
+    };
+
     if (!teamData) {
-        return <div>Team not found</div>;
+        return <div>Bạn vẫn chưa có đội của riêng mình, hãy tạo ngay</div>;
     }
 
     return (
         <div>
             <h2>My Team</h2>
-            <p>Name: {teamData.nameTeam}</p>
-            <p>Logo: {teamData.logo}</p>
             <p>Color Shirt: {teamData.colorShirt}</p>
             <p>Players:</p>
             <ul>
                 {teamData.players.map(playerId => (
-                    <li key={playerId}>{playerId}</li>
+                    <li key={playerId}>
+                        {playerId}
+                        <button onClick={() => handleRemovePlayer(playerId)}>Xóa</button>
+                    </li>
                 ))}
             </ul>
-            <p>Created At: {teamData.createdAt}</p>
-            <p>Updated At: {teamData.updatedAt}</p>
+            <button onClick={handleDeleteTeam}>Xóa Đội Bóng</button>
         </div>
     );
 };

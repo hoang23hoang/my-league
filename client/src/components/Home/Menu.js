@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 
 export default function Menu() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [userData, setUserData] = useState(null);
 
     useEffect(() => {
@@ -61,7 +61,6 @@ export default function Menu() {
                     </Nav>
                     {isLoggedIn ? (
                         <>
-                            <Link to="/action2">haha</Link>
                             <Button variant="outline-danger" onClick={handleLogout}>Đăng xuất</Button>
                         </>
                     ) : (

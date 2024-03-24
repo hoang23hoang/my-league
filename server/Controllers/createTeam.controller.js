@@ -15,7 +15,7 @@ export const createTeam = async (req, res) => {
             logo,
             colorShirt,
             players,
-            place // Lưu trường place vào cơ sở dữ liệu
+            place
         });
 
         const savedTeam = await newTeam.save();

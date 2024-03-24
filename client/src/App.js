@@ -9,6 +9,7 @@ import CreateTeam from "./components/Navbar/CreateTeam.js";
 import FindTeam from "./components/Navbar/FindTeam.js";
 import MyTeam from "./components/Navbar/MyTeam.js";
 import HighlightPage from "./components/Navbar/Highlight.js";
+import HomeDescription from "./components/Home/HomeDescription.js";
 
 
 function App() {
@@ -19,12 +20,14 @@ function App() {
           <>
             <Menu />
             <Register />
+            <Footer/>
           </>
         } />
         <Route path="/auth/login" element={
           <>
             <Menu />
             <Login />
+            <Footer/>
           </>
         } />
         <Route
@@ -32,6 +35,7 @@ function App() {
             <>
               <Menu />
               <CreateTeam />
+              <Footer/>
             </>
           }
         />
@@ -41,6 +45,7 @@ function App() {
             <>
               <Menu />
               <HomeContent />
+              <HomeDescription/>
               <Footer />
             </>
           }
@@ -51,6 +56,7 @@ function App() {
             <>
               <Menu/>
               <MyTeam/>
+              <Footer/>
             </>
           }
         />
@@ -59,6 +65,7 @@ function App() {
             <>
             <Menu/>
             <FindTeam />
+            <Footer/>
             </>
           }
         />
@@ -68,7 +75,7 @@ function App() {
             <>
               <Menu />
               <HighlightPage />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />

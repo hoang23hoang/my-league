@@ -9,6 +9,7 @@ import addToTeamRouter from './Routes/addToTeam.route.js';
 import findPlayerRouter from './Routes/findPlayer.router.js';
 import findTeamRouter from './Routes/findTeam.route.js';
 import myTeamRouter from './Routes/myTeam.route.js';
+import deleteTeamRouter from './Routes/deleteTeam.route.js';
 
 dotenv.config();
 const server = express();
@@ -23,7 +24,7 @@ mongoose.connect(process.env.MONGODB)
 
 server.use('/auth', authRouter);
 server.use('/team', uploadRouter);
-server.use('/teams',createTeamRouter);
+server.use('/teams',createTeamRouter,deleteTeamRouter);
 server.use('/add-player-to-team',addToTeamRouter);
 server.use('/find',findPlayerRouter,findTeamRouter);
 server.use('/player',myTeamRouter)

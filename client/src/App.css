@@ -5,7 +5,7 @@
 
 /*================== ĐÂY LÀ CSS CHO MENU  ==================*/
 
-/* ======================*/
+/* ====================== ĐÂY LÀ CSS CHO HOME CONTENT=============*/
 .homeContent-container {
     background-image: linear-gradient(rgba(0, 0, 0, 0) 30%, rgb(0, 0, 0) 100%), url('../public/image/img-home.jpeg');
     background-color: red;
@@ -34,13 +34,17 @@
 }
 .home-button{
     border: black;
-    border-radius: 60% 0;
-    height: 100%;
-    width: 100%;
-    padding: 20px;
+    height: 100px;
+    width: 150px;
+    border-radius: 80px 0px;
+    padding: 10px;
     background-color: black;
-    color: red;
+    color: green;
     font-size: 25px;
+    font-family: 'Teko';
+}
+.home-button:hover{
+color: white;
 }
 
 /* ======================= ĐÂY LÀ CSS CHO REGISTER-LOGIN FORM =============== */
@@ -94,103 +98,123 @@
   align-items: center;
   height: 100vh;
 }
-
-.create-team-form {
-  background-color: #f0f0f0;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.player-management-section{
+  /* border: 1px solid gray; */
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  margin-left: 15%;
 }
-
-.create-team-form h1 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.create-team-form label {
+.label-create{
+  color: black;
   font-weight: bold;
 }
-
-.create-team-form input[type="text"] {
-  width: 100%;
-  padding: 10px;
+.box-player{
+  border: 2px solid gray;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
 }
-
-.create-team-form button[type="button"],
-.create-team-form button[type="submit"] {
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
+.button-create{
+  background-color: black;
+  color: green;
+  display: flex;
+  font-size: 20px;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 20px;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
-.create-team-form button[type="button"]:hover,
-.create-team-form button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-.create-team-form h3 {
+  margin-left: 30%;
+  align-self: center;
+  justify-content: center;
   margin-top: 20px;
 }
-
-.create-team-form h4 {
-  margin-top: 10px;
+.button-create:hover{
+  cursor: pointer;
+  color: white;
+}
+.button-add{
+  background-color: black;
+  color: green;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  align-self: center;
+  margin-left: 35%;
+  margin-top: 5px;
+}
+.button-add:hover{
+  color: white;
+}
+.button-remove{
+  background-color: rgb(21, 19, 84);
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+  border: none;
+  display: flex;
+  align-self: center;
+ justify-content: center;
+}
+.button-remove:hover{
+  color: red;
+  background-color: gray;
+}
+.team-creation-section{
+  border: 5px solid gray;
+  width: 30%;
+  border-radius: 10px;
+  padding: 10px;
 }
 
-.create-team-form p {
-  margin-bottom: 5px;
-}
 /*====================== HẾT CSS CHO CREATE TEAM ================*/
 
 
 /*================= ĐÂY LÀ CSS CHO HIGHLIGHT ==================*/
-/* Reset CSS */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+
+.highlight-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.highlight-title{
+  margin: 2% 0%;
+  display: flex;
+  justify-content: center;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-.highlight-page {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.box-upload{
+  border: 1px solid black;
+  margin: 2% 0;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  align-items: center;
 }
-
-.highlight-page__title {
-  font-size: 24px;
-  margin-bottom: 20px;
+.box-img-highlight{
+  display: flex;
+  height: 100%;
+  width: 500px;
+  flex-direction: column;
 }
-
-.highlight-page__subtitle {
-  font-size: 20px;
-  margin-top: 30px;
-  margin-bottom: 15px;
+.box-img{
+  border: 1px solid black;
+  margin: 20px;
 }
-
-.highlight-page__file-input {
+.highlight-image{
   display: block;
-  margin-bottom: 15px;
-}
-
-.highlight-page__upload-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  max-width: 100%;
+  max-height: 100%;
+  background-size: contain;
 }
 
 .highlight-page__upload-button:hover {
@@ -202,6 +226,11 @@
   margin-bottom: 10px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-size:cover;
+}
+.box-img-highlight{
+  height: 500px;
+  width: 500px;
 }
 
 @media (max-width: 768px) {
@@ -217,12 +246,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: black;
+  margin-top: 5%;
 }
 
 .myleague-footer {
   width: 80%;
   text-align: center;
   margin-top: 2rem;
+  color: white;
 }
 
 .myleague-footer p {
@@ -233,20 +265,10 @@
   width: 80%;
   text-align: center;
   margin-top: 2rem;
+  color: white;
 }
 
-.myleague-community button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
+
   /*============================ HẾT CSS CHO FOOTER ====================*/
 
 

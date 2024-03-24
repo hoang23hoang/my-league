@@ -3,6 +3,8 @@ import multer from 'multer';
 import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import dotenv from 'dotenv';
+import { authenticateToken } from '../Middleware/authenMiddleware.js';
+import { asyncCatch } from '../Utils/trycatch.js';
 
 dotenv.config();
 
@@ -23,7 +25,7 @@ const storage = new CloudinaryStorage({
   },
 })
 
-uploadRouter.post('/upload', multer({ storage: storage }).single('file'), (req, res) => {
+uploadRouter.post('/upload',asyncCatch(authenticateToken), multer({ storage: storage }).single('file'), (req, res) => {
   console.log(req.file);
   res.json(req.file.path); 
 })

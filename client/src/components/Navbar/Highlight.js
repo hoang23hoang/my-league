@@ -2,34 +2,44 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function HighlightPage() {
-    const [files, setFiles] = useState([]); 
-    const [uploadedUrls, setUploadedUrls] = useState([]);
+    const [files, setFiles] = useState([]);
+    const [uploadedImages, setUploadedImages] = useState([]);
 
-    // Lấy dữ liệu đã lưu trữ trong localStorage khi trang được tải
+    // Giả sử bạn đã lưu trữ thông tin người dùng đăng nhập trong localStorage hoặc state
+    const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+
     useEffect(() => {
-        const storedUrls = localStorage.getItem('uploadedUrls');
-        if (storedUrls) {
-            setUploadedUrls(JSON.parse(storedUrls));
+        const storedImages = localStorage.getItem('uploadedImages');
+        if (storedImages) {
+            setUploadedImages(JSON.parse(storedImages));
         }
     }, []);
 
     const handleFileChange = (event) => {
-        const newFiles = [...event.target.files]; 
+        const newFiles = [...event.target.files];
         setFiles((prevFiles) => [...prevFiles, ...newFiles]);
     };
 
     const handleUpload = async () => {
         try {
+            const token = localStorage.getItem('accessToken');
+
             const promises = files.map(async (file) => {
                 const formData = new FormData();
                 formData.append('file', file);
-                const response = await axios.post('http://localhost:3001/team/upload', formData);
+                const config = {
+                    headers: { authorization: `Bearer ${token}` }
+                };
+                const response = await axios.post('http://localhost:3001/team/upload', formData, config);
+                console.log(response);
                 return response.data;
             });
-            const uploadedUrls = await Promise.all(promises);
-            setUploadedUrls((prevUrls) => [...prevUrls, ...uploadedUrls]); 
+
+            const newUploadedImages = await Promise.all(promises);
+            const allUploadedImages = [...uploadedImages, ...newUploadedImages];
+            setUploadedImages(allUploadedImages);
             setFiles([]);
-            localStorage.setItem('uploadedUrls', JSON.stringify([...uploadedUrls, ...uploadedUrls]));
+            localStorage.setItem('uploadedImages', JSON.stringify(allUploadedImages));
         } catch (error) {
             console.error('Error uploading files:', error);
         }
@@ -37,17 +47,22 @@ export default function HighlightPage() {
 
     return (
         <div className="highlight-page">
-            <h1 className="highlight-page__title">Highlight Page</h1>
-            <input type="file" className="highlight-page__file-input" onChange={handleFileChange} /> 
-            <button className="highlight-page__upload-button" onClick={handleUpload}>Upload</button>
-            {uploadedUrls.length > 0 && (
-                <div>
-                    <h2 className="highlight-page__subtitle">Uploaded Images:</h2>
-                    {uploadedUrls.map((url, index) => (
-                        <img key={index} src={url} alt={`Uploaded ${index + 1}`} className="highlight-page__image" style={{ maxWidth: '100%' }} />
+            <h1 className="highlight-title">Highlight Page</h1>
+            <div className='box-upload'>
+                <input type="file" multiple className="highlight-file" onChange={handleFileChange} />
+                <button className="highlight-button" onClick={handleUpload}>Upload</button>
+            </div>
+            {uploadedImages.length > 0 && (
+                <div className='box-img-highlight'>
+                    <h2 className="highlight-subtitle">Uploaded Images:</h2>
+                    {uploadedImages.map((imageUrl, index) => (
+                        <div key={index} className='box-img'>
+                            <img src={imageUrl} className="highlight-image" />
+                        </div>
                     ))}
                 </div>
             )}
         </div>
     );
 }
+

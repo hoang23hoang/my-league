@@ -7,6 +7,7 @@ export default function CreateTeam() {
     const [players, setPlayers] = useState([]);
     const [emailOrPhone, setEmailOrPhone] = useState('');
     const [place, setPlace] = useState('');
+    const [showPlayers, setShowPlayers] = useState(false);
 
     useEffect(() => {
         const checkToken = async () => {
@@ -14,8 +15,7 @@ export default function CreateTeam() {
                 const token = localStorage.getItem('accessToken');
                 if (!token) {
                     alert('You need to log in to access this page.');
-                    window.location.href = 'http://localhost:3000/auth/login';
-                    return;
+                    window.location.href = '/auth/login'; // Updated for simplicity
                 }
             } catch (error) {
                 console.error('Error checking token:', error);
@@ -28,10 +28,10 @@ export default function CreateTeam() {
     const handleAddPlayer = async () => {
         try {
             const response = await axios.get(`http://localhost:3001/find/players?phone=${emailOrPhone}`);
-            console.log(response.data);
             if (response.data) {
                 setPlayers([...players, response.data]);
                 setEmailOrPhone('');
+                setShowPlayers(true);
             }
         } catch (error) {
             console.error('Error add player:', error);
@@ -45,17 +45,19 @@ export default function CreateTeam() {
             const token = localStorage.getItem('accessToken');
             if (!token) {
                 alert('Bạn phải đăng nhập để tạo team !');
-                window.location.href = 'http://localhost:3000/auth/login';
+                window.location.href = '/auth/login'; // Updated for simplicity
+                return;
             }
             const teamData = { nameTeam, colorShirt, place, players };
-            const response = await axios.post('http://localhost:3001/teams/createTeam', teamData,
-                { headers: { authorization: `Bearer ${token}` } });
-            console.log(response.data);
+            const response = await axios.post('http://localhost:3001/teams/createTeam', teamData, {
+                headers: { authorization: `Bearer ${token}` }
+            });
 
             setNameTeam('');
             setColorShirt('');
             setPlace('');
             setPlayers([]);
+            setShowPlayers(false);
             alert('Team created successfully!');
         } catch (error) {
             console.error('Error creating team:', error);
@@ -73,60 +75,54 @@ export default function CreateTeam() {
         const updatedPlayers = [...players];
         updatedPlayers.splice(index, 1);
         setPlayers(updatedPlayers);
+        if (updatedPlayers.length === 0) {
+            setShowPlayers(false); 
+        }
     };
 
     return (
-        <div className="create-team-container">
-            <div className="create-team-form">
+        <div className="create-team-container" >
+            <div className="team-creation-section">
                 <h1>Create Team</h1>
-                <form onSubmit={handleSubmit} className="team-form">
-                    <label htmlFor="nameTeam" className="team-label">Team Name:</label>
-                    <input type="text" id="nameTeam" name="nameTeam"
-                        value={nameTeam}
-                        onChange={(e) => setNameTeam(e.target.value)}
-                        className="team-input" />
-                    <br />
-                    <label htmlFor="colorShirt" className="team-label">Color Shirt:</label>
-                    <input type="text" id="colorShirt" name="colorShirt"
-                        value={colorShirt}
-                        onChange={(e) => setColorShirt(e.target.value)}
-                        className="team-input" />
-                    <br />
-                    <label htmlFor="place" className="team-label">Place:</label>
-                    <input type="text" id="place" name="place"
-                        value={place}
-                        onChange={(e) => setPlace(e.target.value)}
-                        className="team-input" />
-                    <br />
-                    <label htmlFor="emailOrPhone" className="team-label">Add player by phone:</label>
-                    <input type="text" id="emailOrPhone" name="emailOrPhone"
-                        value={emailOrPhone}
-                        onChange={(e) => setEmailOrPhone(e.target.value)}
-                        className="team-input" />
-                    <button type="button" onClick={handleAddPlayer} className="add-player-button">Add Player</button>
-                    <br />
-                    {players.length > 0 && (
-                        <div className="players-container">
-                            <h3 className="players-heading">Players:</h3>
-                            {players.map((player, index) => (
-                                <div key={index} className="player-details">
-                                    <h4 className="player-heading">Player {index + 1}:</h4>
-                                    <p className="player-info">Name: {player.namePlayer}</p>
-                                    <p className="player-info">Email: {player.email}</p>
-                                    <p className="player-info">Phone: {player.phone}</p>
-                                    <p className="player-info">Age: {player.age}</p>
-                                    <p className="player-info">Shirt Number: <input type="text"
-                                        value={player.shirtNumber}
-                                        onChange={(e) => handleShirtNumberChange(e, index)}
-                                        className="shirt-number-input" /></p>
-                                    <button type="button" onClick={() => handleRemovePlayer(index)} className="remove-player-button">Remove Player</button>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                    <button type="submit" className="create-team-button">Create Team</button>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label className='label-create'>Team Name:</label>
+                        <input type="text" value={nameTeam} onChange={(e) => setNameTeam(e.target.value)} />
+                    </div>
+                    <div>
+                        <label className='label-create'>Color Shirt:</label>
+                        <input type="text" value={colorShirt} onChange={(e) => setColorShirt(e.target.value)} />
+                    </div>
+                    <div>
+                        <label className='label-create'>Place:</label>
+                        <input type="text" value={place} onChange={(e) => setPlace(e.target.value)} />
+                    </div>
+                    <div>
+                        <label className='label-create'>Add player by phone:</label>
+                        <input type="text" value={emailOrPhone} onChange={(e) => setEmailOrPhone(e.target.value)} />
+                        <button type="button" className='button-add' onClick={handleAddPlayer}>Add Player</button>
+                    </div>
+                    <button  className='button-create' type="submit">Create Team</button>
                 </form>
             </div>
+            {showPlayers && (
+                <div className="player-management-section">
+                    <h2>Players</h2>
+                    {players.map((player, index) => (
+                        <div key={index} className='box-player'>
+                            <p>Name: {player.namePlayer}</p>
+                            <p>Email: {player.email}</p>
+                            <p>Phone: {player.phone}</p>
+                            <p>Age: {player.age}</p>
+                            <p>
+                                Shirt Number: 
+                                <input type="text" value={player.shirtNumber || ''} onChange={(e) => handleShirtNumberChange(e, index)} />
+                            </p>
+                            <button className='button-remove' onClick={() => handleRemovePlayer(index)}>Remove Player</button>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 }
