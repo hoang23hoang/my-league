@@ -16,3 +16,21 @@ export const findPlayer = async (req, res) => {
         res.status(500).json({ message: 'Error searching player' });
     }
 };
+
+export const findPlayerById = async (req, res) => {
+    try {
+      const { playerId } = req.params;
+      console.log(playerId);
+      
+      const player = await playerModel.findById(playerId);
+
+      if (!player) {
+        return res.status(404).json({ message: 'Player not found' });
+      }
+
+      res.json(player);
+      console.log(player.namePlayer);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+};

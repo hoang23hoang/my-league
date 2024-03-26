@@ -15,7 +15,7 @@ export default function CreateTeam() {
                 const token = localStorage.getItem('accessToken');
                 if (!token) {
                     alert('You need to log in to access this page.');
-                    window.location.href = '/auth/login'; // Updated for simplicity
+                    window.location.href = '/auth/login';
                 }
             } catch (error) {
                 console.error('Error checking token:', error);
@@ -45,7 +45,7 @@ export default function CreateTeam() {
             const token = localStorage.getItem('accessToken');
             if (!token) {
                 alert('Bạn phải đăng nhập để tạo team !');
-                window.location.href = '/auth/login'; // Updated for simplicity
+                window.location.href = '/auth/login'; 
                 return;
             }
             const teamData = { nameTeam, colorShirt, place, players };

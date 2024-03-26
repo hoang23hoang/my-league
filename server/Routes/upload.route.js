@@ -19,15 +19,18 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'upload',
-    allowed_formats: ['jpg', 'png', 'gif'],
-    public_id: (req, file) => 'image_myleague_' + Date.now(),
+    folder: 'img-myleague',
+    resource_type: "auto",
+    allowed_formats: ['jpg', 'png', 'gif', 'mp4', 'avi', 'mov'], 
+    public_id: (req, file) => 'media_myleague_' + Date.now(), 
   },
-})
+});
 
-uploadRouter.post('/upload',asyncCatch(authenticateToken), multer({ storage: storage }).single('file'), (req, res) => {
-  console.log(req.file);
-  res.json(req.file.path); 
-})
+uploadRouter.post('/upload', asyncCatch(authenticateToken), multer({ storage: storage }).single('file'), (req, res) => {
+  const playerName = req.user.namePlayer;
+  const imageUrl = req.file.path; 
+  res.json({ data: imageUrl, playerName: playerName }); 
+});
+
 
 export default uploadRouter;

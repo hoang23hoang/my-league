@@ -5,8 +5,6 @@ export default function HighlightPage() {
     const [files, setFiles] = useState([]);
     const [uploadedImages, setUploadedImages] = useState([]);
 
-    // Giả sử bạn đã lưu trữ thông tin người dùng đăng nhập trong localStorage hoặc state
-    const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
 
     useEffect(() => {
         const storedImages = localStorage.getItem('uploadedImages');
@@ -49,20 +47,32 @@ export default function HighlightPage() {
         <div className="highlight-page">
             <h1 className="highlight-title">Highlight Page</h1>
             <div className='box-upload'>
-                <input type="file" multiple className="highlight-file" onChange={handleFileChange} />
+                <input
+                    type="file"
+                    multiple
+                    accept="image/*,video/*" 
+                    className="highlight-file"
+                    onChange={handleFileChange}
+                />
+
                 <button className="highlight-button" onClick={handleUpload}>Upload</button>
             </div>
             {uploadedImages.length > 0 && (
                 <div className='box-img-highlight'>
                     <h2 className="highlight-subtitle">Uploaded Images:</h2>
-                    {uploadedImages.map((imageUrl, index) => (
+                    {uploadedImages.map((item, index) => (
                         <div key={index} className='box-img'>
-                            <img src={imageUrl} className="highlight-image" />
+                            {item.data.endsWith('.mp4') || item.data.endsWith('.avi') || item.data.endsWith('.mov') ? (
+                                <video controls src={item.data} className="highlight-video" />
+                            ) : (
+                                <img src={item.data} className="highlight-image" />
+                            )}
+                            <p className="player-name">Uploaded by: {item.playerName}</p>
                         </div>
                     ))}
+
                 </div>
             )}
         </div>
     );
 }
-

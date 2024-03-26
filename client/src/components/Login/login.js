@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 export default function Login() {
     const [emailOrPhone, setEmailOrPhone] = useState('');
@@ -10,18 +11,18 @@ export default function Login() {
         try {
             const loginData = {
                 email: emailOrPhone,
-                phone: emailOrPhone, 
+                phone: emailOrPhone,
                 password: password
             };
 
             const response = await axios.post('http://localhost:3001/auth/login', loginData);
-            console.log(response.data); 
+            console.log(response.data);
             if (response.data.accessToken) {
                 localStorage.setItem('accessToken', response.data.accessToken);
                 window.alert('Đăng nhập thành công!');
                 window.location.href = '/';
-                } else {
-                    throw new Error("Lỗi đăng nhập!");
+            } else {
+                throw new Error("Lỗi đăng nhập!");
             }
         } catch (error) {
             window.alert('Đăng nhập không thành công! Vui lòng kiểm tra lại thông tin.');
@@ -50,7 +51,8 @@ export default function Login() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         /><br /><br />
-                        <input type="submit" value="Đăng nhập" style={{backgroundColor:'green'}}/>
+                        <input type="submit" value="Đăng nhập" style={{ backgroundColor: 'green' }} />
+                        <span>Bạn chưa có tài khoản ?<Link to='/auth/register' className='nav-link' style={{ color: 'blue' }}>Đăng ký</Link></span>
                     </div>
                 </form>
             </div>

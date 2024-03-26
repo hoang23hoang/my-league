@@ -7,8 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 
 export default function Menu() {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
-    const [userData, setUserData] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(true); // Khởi tạo là false
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,9 +20,7 @@ export default function Menu() {
                         }
                     });
                     console.log('Đăng nhập thành công');
-                    const userData = response.data;
-                    setUserData(userData);
-                    setIsLoggedIn(true);
+                    setIsLoggedIn(false);
                 }
             } catch (error) {
                 console.error('Error fetching user data: ', error);
@@ -36,7 +33,6 @@ export default function Menu() {
     const handleLogout = () => {
         localStorage.removeItem('accessToken'); 
         setIsLoggedIn(false);
-        setUserData(null);
     };
 
     return (
@@ -60,9 +56,7 @@ export default function Menu() {
                         <Link to="/highlight" className='nav-link'>Highlight</Link>
                     </Nav>
                     {isLoggedIn ? (
-                        <>
-                            <Button variant="outline-danger" onClick={handleLogout}>Đăng xuất</Button>
-                        </>
+                        <Button variant="outline-danger" onClick={handleLogout}>Đăng xuất</Button>
                     ) : (
                         <>
                             <Link to="/auth/register" className='nav-link' style={{ color: 'gray' }}>Đăng ký</Link>

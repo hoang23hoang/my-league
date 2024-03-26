@@ -18,11 +18,11 @@ export default function Register() {
                 age
             });
             console.log(response.data);
-            window.alert('Đăng ký thành công!'); 
+            window.alert('Đăng ký thành công!');
             window.location.href = '/';
         } catch (error) {
             if (error.response && error.response.data) {
-                window.alert(error.response.data); // Hiển thị alert lỗi
+                window.alert(error.response.data);
             } else {
                 window.alert('Đã xảy ra lỗi, vui lòng thử lại sau.');
             }
@@ -64,7 +64,7 @@ export default function Register() {
                         value={age}
                         onChange={(e) => setAge(e.target.value)}
                     /><br />
-                    <span>Bạn đã có tài khoản ?<Link to='/auth/login' className='nav-link'>Đăng nhập</Link></span>
+                    <span>Bạn đã có tài khoản ?<Link to='/auth/login' style={{ color: 'blue' }} className='nav-link'>Đăng nhập</Link></span>
                     <button onClick={handleRegister}>Đăng ký</button>
                 </div>
             </div>
