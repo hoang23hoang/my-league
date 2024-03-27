@@ -60,7 +60,8 @@ export default function Menu() {
                     ) : (
                         <>
                             <Link to="/auth/register" className='nav-link' style={{ color: 'gray' }}>Đăng ký</Link>
-                            <Link to="/auth/login" className='nav-link' style={{ color: 'gray' }}>Đăng nhập</Link>
+                            <Link to="/auth/login" className="nav-link" style={{ color: 'gray', margin: '0px 20px' }}>Đăng nhập</Link>
+
                         </>
                     )}
                 </Navbar.Collapse>
