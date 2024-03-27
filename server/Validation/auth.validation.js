@@ -8,7 +8,7 @@ export const validateRegister = (req, res, next) => {
 
 export const validateLogin = (req, res, next) => {
     const { phone, password, email } = req.body;
-    if (!(phone ||! email)) {
+    if (!(phone || !email)) {
         return res.status(400).json({ error: "You must provide either userplayer or email." });
     }
     if (!password) {

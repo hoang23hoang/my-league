@@ -14,7 +14,7 @@ import updatedTeamRouter from './Routes/updateTeam.route.js';
 
 dotenv.config();
 const server = express();
-const port = process.env.PORT || 3001; 
+const port = process.env.PORT || 3001;
 
 server.use(express.json());
 server.use(cors());
@@ -25,10 +25,10 @@ mongoose.connect(process.env.MONGODB)
 
 server.use('/auth', authRouter);
 server.use('/team', uploadRouter);
-server.use('/teams',createTeamRouter,deleteTeamRouter,updatedTeamRouter);
-server.use('/add-player-to-team',addToTeamRouter);
-server.use('/find',findPlayerRouter,findTeamRouter);
-server.use('/player',myTeamRouter)
+server.use('/teams', createTeamRouter, deleteTeamRouter, updatedTeamRouter);
+server.use('/add-player-to-team', addToTeamRouter);
+server.use('/find', findPlayerRouter, findTeamRouter);
+server.use('/player', myTeamRouter)
 server.listen(port, () => {
     console.log('Server is listening on port', port);
 });

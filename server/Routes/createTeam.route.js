@@ -5,6 +5,6 @@ import { authenticateToken } from '../Middleware/authenMiddleware.js';
 
 const createTeamRouter = express.Router();
 
-createTeamRouter.post('/createTeam',asyncCatch(authenticateToken),asyncCatch(createTeam));
+createTeamRouter.post('/createTeam', asyncCatch(authenticateToken), asyncCatch(createTeam));
 
 export default createTeamRouter;

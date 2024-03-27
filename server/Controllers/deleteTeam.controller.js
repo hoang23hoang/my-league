@@ -2,7 +2,7 @@ import { teamModel } from '../Models/team.model.js';
 
 export const deleteTeam = async (req, res) => {
     try {
-        const { idTeam } = req.params; 
+        const { idTeam } = req.params;
         const team = await teamModel.findById(idTeam);
         if (!team) {
             return res.status(404).json({ message: 'Không tìm thấy đội bóng.' });

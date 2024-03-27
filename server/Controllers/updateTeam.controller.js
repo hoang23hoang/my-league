@@ -1,8 +1,8 @@
 import { teamModel } from "../Models/team.model.js";
 
-export const updatedTeam = async(req,res)=>{
-    const { teamId } = req.params; 
-    const { nameTeam, colorShirt, players, place } = req.body; 
+export const updatedTeam = async (req, res) => {
+    const { teamId } = req.params;
+    const { nameTeam, colorShirt, players, place } = req.body;
 
     try {
         const updatedTeam = await teamModel.findByIdAndUpdate(teamId, {
@@ -10,7 +10,7 @@ export const updatedTeam = async(req,res)=>{
             colorShirt,
             players,
             place
-        }, { new: true }); 
+        }, { new: true });
 
         if (!updatedTeam) {
             return res.status(404).json({ message: 'Team not found' });
@@ -18,6 +18,6 @@ export const updatedTeam = async(req,res)=>{
 
         res.json(updatedTeam);
     } catch (error) {
-        res.status(500).json({ message: error.message }); 
+        res.status(500).json({ message: error.message });
     }
 }

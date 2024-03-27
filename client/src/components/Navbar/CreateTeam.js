@@ -14,7 +14,7 @@ export default function CreateTeam() {
             try {
                 const token = localStorage.getItem('accessToken');
                 if (!token) {
-                    alert('You need to log in to access this page.');
+                    alert('Bạn phải đăng nhập để xem được thông tin này !');
                     window.location.href = '/auth/login';
                 }
             } catch (error) {
@@ -45,7 +45,7 @@ export default function CreateTeam() {
             const token = localStorage.getItem('accessToken');
             if (!token) {
                 alert('Bạn phải đăng nhập để tạo team !');
-                window.location.href = '/auth/login'; 
+                window.location.href = '/auth/login';
                 return;
             }
             const teamData = { nameTeam, colorShirt, place, players };
@@ -65,62 +65,58 @@ export default function CreateTeam() {
         }
     };
 
-    const handleShirtNumberChange = (event, index) => {
-        const updatedPlayers = [...players];
-        updatedPlayers[index].shirtNumber = event.target.value;
-        setPlayers(updatedPlayers);
-    };
-
     const handleRemovePlayer = (index) => {
         const updatedPlayers = [...players];
         updatedPlayers.splice(index, 1);
         setPlayers(updatedPlayers);
         if (updatedPlayers.length === 0) {
-            setShowPlayers(false); 
+            setShowPlayers(false);
         }
     };
 
     return (
         <div className="create-team-container" >
+            <h1 style={{ display: 'flex', justifyContent: 'center', fontFamily: "Angkor", fontSize: 50, margin: 50 }}>Create Team</h1>
             <div className="team-creation-section">
-                <h1>Create Team</h1>
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label className='label-create'>Team Name:</label>
-                        <input type="text" value={nameTeam} onChange={(e) => setNameTeam(e.target.value)} />
+                        <input className="inputCreate" type="text" value={nameTeam} onChange={(e) => setNameTeam(e.target.value)} />
                     </div>
                     <div>
                         <label className='label-create'>Color Shirt:</label>
-                        <input type="text" value={colorShirt} onChange={(e) => setColorShirt(e.target.value)} />
+                        <input className="inputCreate" type="text" value={colorShirt} onChange={(e) => setColorShirt(e.target.value)} />
                     </div>
                     <div>
                         <label className='label-create'>Place:</label>
-                        <input type="text" value={place} onChange={(e) => setPlace(e.target.value)} />
+                        <input className="inputCreate" type="text" value={place} onChange={(e) => setPlace(e.target.value)} />
                     </div>
                     <div>
                         <label className='label-create'>Add player by phone:</label>
-                        <input type="text" value={emailOrPhone} onChange={(e) => setEmailOrPhone(e.target.value)} />
-                        <button type="button" className='button-add' onClick={handleAddPlayer}>Add Player</button>
+                        <div style={{ display: 'flex' }}>
+                            <input className="inputCreate2" type="text" value={emailOrPhone} onChange={(e) => setEmailOrPhone(e.target.value)} />
+                            <button type="button" className='button-add' onClick={handleAddPlayer}>Add Player</button>
+                        </div>
                     </div>
-                    <button  className='button-create' type="submit">Create Team</button>
+                    <div style={{ display: 'flex', justifyContent: 'center', margin: '10px 0px' }}>
+                        <button className='button-create' type="submit">Create Team</button>
+                    </div>
                 </form>
             </div>
             {showPlayers && (
-                <div className="player-management-section">
-                    <h2>Players</h2>
-                    {players.map((player, index) => (
-                        <div key={index} className='box-player'>
-                            <p>Name: {player.namePlayer}</p>
-                            <p>Email: {player.email}</p>
-                            <p>Phone: {player.phone}</p>
-                            <p>Age: {player.age}</p>
-                            <p>
-                                Shirt Number: 
-                                <input type="text" value={player.shirtNumber || ''} onChange={(e) => handleShirtNumberChange(e, index)} />
-                            </p>
-                            <button className='button-remove' onClick={() => handleRemovePlayer(index)}>Remove Player</button>
-                        </div>
-                    ))}
+                <div>
+                    <h2 style={{ fontFamily: "Angkor", margin: 50 }}>Player:</h2>
+                    <div className="player-management-section">
+                        {players.map((player, index) => (
+                            <div key={index} className='box-player'>
+                                <p>Name: <strong style={{ fontFamily: "Courier New" }}>{player.namePlayer}</strong></p>
+                                <p>Email: <strong style={{ fontFamily: "Courier New" }}>{player.email}</strong></p>
+                                <p>Phone: <strong style={{ fontFamily: "Courier New" }}>{player.phone}</strong></p>
+                                <p>Age: <strong style={{ fontFamily: "Courier New" }}>{player.age}</strong></p>
+                                <button className='button-remove' onClick={() => handleRemovePlayer(index)}>Remove Player</button>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             )}
         </div>

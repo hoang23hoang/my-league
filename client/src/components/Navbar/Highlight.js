@@ -44,35 +44,38 @@ export default function HighlightPage() {
     };
 
     return (
-        <div className="highlight-page">
-            <h1 className="highlight-title">Highlight Page</h1>
-            <div className='box-upload'>
-                <input
-                    type="file"
-                    multiple
-                    accept="image/*,video/*" 
-                    className="highlight-file"
-                    onChange={handleFileChange}
-                />
+        <div className='container-highlight'>
+            <div className="highlight-page">
+                <h1 style={{ display: 'flex', justifyContent: 'center', fontFamily: "Angkor", margin: 50, marginBottom: 100 }}>Highlight Page</h1>
+                <div className='box-upload'>
+                    <input
+                        type="file"
+                        multiple
+                        accept="image/*,video/*"
+                        className="highlight-file"
+                        onChange={handleFileChange}
+                    />
 
-                <button className="highlight-button" onClick={handleUpload}>Upload</button>
-            </div>
-            {uploadedImages.length > 0 && (
-                <div className='box-img-highlight'>
-                    <h2 className="highlight-subtitle">Uploaded Images:</h2>
-                    {uploadedImages.map((item, index) => (
-                        <div key={index} className='box-img'>
-                            {item.data.endsWith('.mp4') || item.data.endsWith('.avi') || item.data.endsWith('.mov') ? (
-                                <video controls src={item.data} className="highlight-video" />
-                            ) : (
-                                <img src={item.data} className="highlight-image" />
-                            )}
-                            <p className="player-name">Uploaded by: {item.playerName}</p>
-                        </div>
-                    ))}
-
+                    <button className="highlight-button" onClick={handleUpload}>Upload</button>
                 </div>
-            )}
+                {uploadedImages.length > 0 && (
+                    <div>
+                        <h2 className="highlight-subtitle">Uploaded Images:</h2>
+                        <div className='box-img-highlight'>
+                            {uploadedImages.map((item, index) => (
+                                <div key={index} className='box-img'>
+                                    {item.data.endsWith('.mp4') || item.data.endsWith('.avi') || item.data.endsWith('.mov') ? (
+                                        <video controls src={item.data} className="highlight-video" />
+                                    ) : (
+                                        <img src={item.data} className="highlight-image" />
+                                    )}
+                                    <p className="player-name">Uploaded by: {item.playerName}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

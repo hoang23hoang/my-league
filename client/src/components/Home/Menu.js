@@ -7,12 +7,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 
 export default function Menu() {
-    const [isLoggedIn, setIsLoggedIn] = useState(true); // Khởi tạo là false
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const token = localStorage.getItem('accessToken'); 
+                const token = localStorage.getItem('accessToken');
                 if (token) {
                     const response = await axios.get('http://localhost:3001/auth/login', {
                         headers: {
@@ -31,7 +31,7 @@ export default function Menu() {
     }, []);
 
     const handleLogout = () => {
-        localStorage.removeItem('accessToken'); 
+        localStorage.removeItem('accessToken');
         setIsLoggedIn(false);
     };
 
@@ -40,7 +40,7 @@ export default function Menu() {
             <Container fluid>
                 <Navbar.Brand className='nav-link'>
                     <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFXeFZhDFCjYod8WHzK3WfuYm2Ajb54P0diWxFlh98xZt4QYxHzSQ_Y3g5GGzlnIHwkx8&usqp=CAU'
-                    style={{ height: '40px' }}/>
+                        style={{ height: '40px' }} />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">

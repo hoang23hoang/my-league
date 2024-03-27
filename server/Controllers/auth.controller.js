@@ -5,7 +5,6 @@ import jwt from "jsonwebtoken"
 export const register = async (req, res) => {
     const { email, password, namePlayer, phone, age } = req.body;
 
-    // Kiểm tra xem email hoặc số điện thoại đã tồn tại trong cơ sở dữ liệu chưa
     const existingPlayer = await playerModel.findOne({ $or: [{ email }, { phone }] });
     if (existingPlayer) {
         return res.status(400).send("ĐĂNG KÝ KHÔNG THÀNH CÔNG: Email hoặc số điện thoại đã được sử dụng !");
@@ -31,9 +30,9 @@ export const login = async (req, res) => {
     try {
         const playerByEmail = await playerModel.findOne({ email: email });
         const playerByPhone = await playerModel.findOne({ phone: phone });
-        
+
         const player = playerByEmail || playerByPhone;
-        
+
         if (!player) {
             return res.status(404).send("Email or phone is not correct!");
         }
