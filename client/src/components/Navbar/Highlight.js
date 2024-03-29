@@ -60,7 +60,7 @@ export default function HighlightPage() {
                 </div>
                 {uploadedImages.length > 0 && (
                     <div>
-                        <h2 className="highlight-subtitle">Uploaded Images:</h2>
+                        <h2 className="highlight-subtitle">Memorable photo and video:</h2>
                         <div className='box-img-highlight'>
                             {uploadedImages.map((item, index) => (
                                 <div key={index} className='box-img'>

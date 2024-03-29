@@ -36,10 +36,7 @@ export const login = async (req, res) => {
         if (!player) {
             return res.status(404).send("Email or phone is not correct!");
         }
-        if (!player) {
-            return res.status(404).send("Email or phone is not correct!");
-        }
-
+        
         const passwordMatch = await bcrypt.compare(password, player.password);
         if (!passwordMatch) {
             return res.status(401).send("Email or phone is not correct!");

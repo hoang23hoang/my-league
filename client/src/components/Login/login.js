@@ -19,7 +19,8 @@ export default function Login() {
             console.log(response.data);
             if (response.data.accessToken) {
                 localStorage.setItem('accessToken', response.data.accessToken);
-                window.alert('Đăng nhập thành công!');
+                localStorage.setItem('isLoggedIn',true)
+                alert('Đăng nhập thành công!');
                 window.location.href = '/';
             } else {
                 throw new Error("Lỗi đăng nhập!");

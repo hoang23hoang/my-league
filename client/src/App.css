@@ -326,6 +326,9 @@
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px; 
 }
+.highlight-subtitle{
+  margin-top: 10%;
+}
 
 
 @media (max-width: 768px) {

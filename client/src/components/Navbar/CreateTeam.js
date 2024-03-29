@@ -8,6 +8,7 @@ export default function CreateTeam() {
     const [emailOrPhone, setEmailOrPhone] = useState('');
     const [place, setPlace] = useState('');
     const [showPlayers, setShowPlayers] = useState(false);
+    
 
     useEffect(() => {
         const checkToken = async () => {
@@ -42,16 +43,9 @@ export default function CreateTeam() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const token = localStorage.getItem('accessToken');
-            if (!token) {
-                alert('Bạn phải đăng nhập để tạo team !');
-                window.location.href = '/auth/login';
-                return;
-            }
             const teamData = { nameTeam, colorShirt, place, players };
-            const response = await axios.post('http://localhost:3001/teams/createTeam', teamData, {
-                headers: { authorization: `Bearer ${token}` }
-            });
+            const response = await axios.post('http://localhost:3001/teams/createTeam', teamData, 
+            );
 
             setNameTeam('');
             setColorShirt('');

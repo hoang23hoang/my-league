@@ -7,8 +7,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 
 export default function Menu() {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const isLogined = localStorage.getItem('isLoggedIn');
 
+    const [isLoggedIn, setIsLoggedIn] = useState(isLogined || false);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -19,8 +20,12 @@ export default function Menu() {
                             Authorization: `Bearer ${token}`
                         }
                     });
-                    console.log('Đăng nhập thành công');
-                    setIsLoggedIn(false);
+                    console.log(response);
+
+                    if (response) {
+                        await localStorage.setItem(isLoggedIn, isLoggedIn)
+                        setIsLoggedIn(true);
+                    }
                 }
             } catch (error) {
                 console.error('Error fetching user data: ', error);
@@ -32,6 +37,7 @@ export default function Menu() {
 
     const handleLogout = () => {
         localStorage.removeItem('accessToken');
+        localStorage.removeItem('isLoggedIn')
         setIsLoggedIn(false);
     };
 
@@ -61,7 +67,6 @@ export default function Menu() {
                         <>
                             <Link to="/auth/register" className='nav-link' style={{ color: 'gray' }}>Đăng ký</Link>
                             <Link to="/auth/login" className="nav-link" style={{ color: 'gray', margin: '0px 20px' }}>Đăng nhập</Link>
-
                         </>
                     )}
                 </Navbar.Collapse>
