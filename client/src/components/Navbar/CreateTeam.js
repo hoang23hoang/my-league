@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateTeam() {
     const [nameTeam, setNameTeam] = useState('');
@@ -8,7 +9,7 @@ export default function CreateTeam() {
     const [emailOrPhone, setEmailOrPhone] = useState('');
     const [place, setPlace] = useState('');
     const [showPlayers, setShowPlayers] = useState(false);
-    
+    const navigate = useNavigate();
 
     useEffect(() => {
         const checkToken = async () => {
@@ -16,7 +17,7 @@ export default function CreateTeam() {
                 const token = localStorage.getItem('accessToken');
                 if (!token) {
                     alert('Bạn phải đăng nhập để xem được thông tin này !');
-                    window.location.href = '/auth/login';
+                    navigate('/auth/login');
                 }
             } catch (error) {
                 console.error('Error checking token:', error);
@@ -43,9 +44,16 @@ export default function CreateTeam() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
+            const token = localStorage.getItem('accessToken');
+            if (!token) {
+                alert('Bạn phải đăng nhập để tạo team !');
+                navigate('/auth/login');
+                return;
+            }
             const teamData = { nameTeam, colorShirt, place, players };
-            const response = await axios.post('http://localhost:3001/teams/createTeam', teamData, 
-            );
+            const response = await axios.post('http://localhost:3001/teams/createTeam', teamData, {
+                headers: { authorization: `Bearer ${token}` }
+            });
 
             setNameTeam('');
             setColorShirt('');

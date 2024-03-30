@@ -10,7 +10,8 @@ const teamSchema = new Schema({
     logo: String,
     colorShirt: String,
     place: String,
-    players: [{ type: Schema.Types.ObjectId, ref: 'Player' }]
+    players: [{ type: Schema.Types.ObjectId, ref: 'Player' }],
+    ownerId: { type: Schema.Types.ObjectId, ref: 'Player', required: true }
 }, { timestamps: true });
 
 const teamModel = mongoose.model('Team', teamSchema);

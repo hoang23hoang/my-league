@@ -20,14 +20,14 @@ function App() {
           <>
             <Menu />
             <Register />
-            <Footer/>
+            <Footer />
           </>
         } />
         <Route path="/auth/login" element={
           <>
             <Menu />
             <Login />
-            <Footer/>
+            <Footer />
           </>
         } />
         <Route
@@ -35,7 +35,7 @@ function App() {
             <>
               <Menu />
               <CreateTeam />
-              <Footer/>
+              <Footer />
             </>
           }
         />
@@ -45,7 +45,7 @@ function App() {
             <>
               <Menu />
               <HomeContent />
-              <HomeDescription/>
+              <HomeDescription />
               <Footer />
             </>
           }
@@ -54,18 +54,18 @@ function App() {
           path="/my-team"
           element={
             <>
-              <Menu/>
-              <MyTeam/>
-              <Footer/>
+              <Menu />
+              <MyTeam />
+              {/* <Footer /> */}
             </>
           }
         />
         <Route
           path="/find-teams" element={
             <>
-            <Menu/>
-            <FindTeam />
-            <Footer/>
+              <Menu />
+              <FindTeam />
+              <Footer />
             </>
           }
         />
@@ -80,7 +80,7 @@ function App() {
           }
         />
       </Routes>
-      
+
     </BrowserRouter>
   );
 }

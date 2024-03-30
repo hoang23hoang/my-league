@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [phone, setPhone] = useState('');
     const [namePlayer, setNamePlayer] = useState('');
     const [age, setAge] = useState('');
+    const navigate = useNavigate();
 
     const handleRegister = async () => {
         try {
@@ -19,7 +22,7 @@ export default function Register() {
             });
             console.log(response.data);
             window.alert('Đăng ký thành công!');
-            window.location.href = '/';
+            navigate('/auth/login'); 
         } catch (error) {
             if (error.response && error.response.data) {
                 window.alert(error.response.data);

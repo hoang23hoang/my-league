@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const MyTeam = () => {
     const [teamData, setTeamData] = useState(null);
     const [updateData, setUpdateData] = useState({ nameTeam: '', colorShirt: '', place: '' });
     const [showUpdateForm, setShowUpdateForm] = useState(false);
     const [emailOrPhone, setEmailOrPhone] = useState('');
-
+    const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchTeamData = async () => {
+            setIsLoading(true);
             try {
                 const token = localStorage.getItem('accessToken');
                 if (!token) {
                     alert('Bạn phải đăng nhập để xem thông tin này!');
-                    window.location.href = 'http://localhost:3000/auth/login';
+                    navigate('/auth/login');
                     return;
                 }
                 const response = await axios.get('http://localhost:3001/player/my-team', { headers: { Authorization: `Bearer ${token}` } });
@@ -25,11 +28,14 @@ const MyTeam = () => {
                     ));
                     const updatedPlayers = playerDetails.map(response => response.data);
                     setTeamData({ ...team, players: updatedPlayers });
+                    setIsLoading(false);
                 } else {
                     setTeamData({});
                 }
             } catch (error) {
                 console.error('Error fetching team data:', error);
+                setIsLoading(false);
+
             }
         };
         fetchTeamData();
@@ -103,7 +109,8 @@ const MyTeam = () => {
             await axios.delete(`http://localhost:3001/teams/delete-team/${teamData._id}`, {
                 headers: { authorization: `Bearer ${token}` }
             });
-            window.location.reload();
+            setTeamData(null); 
+            navigate('/my-team'); 
         } catch (error) {
             console.error('Error deleting team:', error);
         }
@@ -120,8 +127,6 @@ const MyTeam = () => {
             const response = await axios.get(`http://localhost:3001/find/players?phone=${emailOrPhone}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            console.log(response.data);
-            console.log(response.data._id);
             if (!response.data || !response.data._id) {
                 alert('Không tìm thấy cầu thủ với số điện thoại này.');
                 return;
@@ -140,6 +145,9 @@ const MyTeam = () => {
             alert('Có lỗi xảy ra. Hãy thử lại.');
         }
     };
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
     if (!teamData) {
         return <div>Bạn vẫn chưa có đội của riêng mình, hãy tạo ngay</div>;
@@ -181,7 +189,7 @@ const MyTeam = () => {
                         <button className='ok-myteam-button' onClick={handleUpdateTeam}>Đồng Ý</button>
                     </div>
                 )}
-                <div style={{ display: 'flex', position: 'relative', left: '80%' }}>
+                <div style={{ display: 'flex', position: 'relative', }}>
                     <button className='delelte-myteam-button' onClick={handleDeleteTeam}>Xóa Đội Bóng</button>
                 </div>
             </div>

@@ -3,6 +3,7 @@ import { teamModel } from "../Models/team.model.js";
 export const createTeam = async (req, res) => {
     try {
         const { nameTeam, colorShirt, players, place } = req.body;
+        const ownerId = req.user.id;
 
         const existingTeam = await teamModel.findOne({ nameTeam });
 
@@ -14,7 +15,8 @@ export const createTeam = async (req, res) => {
             nameTeam,
             colorShirt,
             players,
-            place
+            place,
+            ownerId
         });
 
         const savedTeam = await newTeam.save();

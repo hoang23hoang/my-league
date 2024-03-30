@@ -7,14 +7,14 @@
 
 /* ====================== ĐÂY LÀ CSS CHO HOME CONTENT=============*/
 .homeContent-container {
-  background-image: linear-gradient(rgba(0, 0, 0, 0) 30%, rgb(0, 0, 0) 100%), url('../public/image/img-home.jpeg');
+  background-image: url('../public/image/img-home.jpeg');
   background-color: red;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   color: white;
   min-width: none;
-  min-height: 700px;
+  min-height: 720px;
 }
 
 .homeContent-content {
@@ -100,6 +100,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 10%;
 }
 
 .team-creation-section {
@@ -247,15 +248,16 @@
 /*================= ĐÂY LÀ CSS CHO HIGHLIGHT ==================*/
 
 /* Base styling for the Highlight Page */
-.container-highlight{
+.container-highlight {
   height: 100%;
   margin-bottom: 5%;
 }
+
 .highlight-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%; 
+  width: 80%;
   margin: auto;
 }
 
@@ -263,20 +265,20 @@
   margin-top: 20px;
   font-family: 'Arial', sans-serif;
   font-size: 24px;
-  color: #333; 
+  color: #333;
 }
 
 .box-upload {
-  border: 2px dashed #007BFF; 
+  border: 2px dashed #007BFF;
   padding: 20px;
-  width: 60%; 
-  border-radius: 8px; 
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+  width: 60%;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   background-color: #f8f9fa;
 }
 
 .highlight-file {
-  margin-right: 20px; /* Space between input and button */
+  margin-right: 20px;
 }
 
 .highlight-button {
@@ -296,48 +298,52 @@
 
 .box-img-highlight {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 15px;
 }
 
 .box-img {
-  overflow: hidden; 
-  position: relative; 
+  overflow: hidden;
+  position: relative;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
 
-.highlight-image, .highlight-video {
+.highlight-image,
+.highlight-video {
   width: 100%;
   height: 400px;
-  object-fit: cover; 
-  border-top-left-radius: 8px; 
-  border-top-right-radius: 8px; 
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .player-name {
   font-size: 14px;
   text-align: center;
   color: #555;
-  background-color: #fff; 
+  background-color: #fff;
   padding: 5px 0;
   border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px; 
+  border-bottom-right-radius: 8px;
 }
-.highlight-subtitle{
+
+.highlight-subtitle {
   margin-top: 10%;
 }
 
 
 @media (max-width: 768px) {
-  .box-upload, .box-img-highlight {
-    width: 90%; 
+
+  .box-upload,
+  .box-img-highlight {
+    width: 90%;
   }
 
   .highlight-title {
-    font-size: 20px; 
+    font-size: 20px;
   }
 }
 
@@ -356,7 +362,6 @@
   flex-direction: column;
   align-items: center;
   background-color: black;
-  margin-top: 5%;
   position: absolute;
   width: 100%;
 
@@ -392,11 +397,10 @@
   list-style-type: none;
   padding: 0;
   margin: 1rem;
-
 }
 
 .container-findteam li {
-  border: 2px solid black;
+  border: 3px solid black;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -405,7 +409,7 @@
 }
 
 .container-findteam li:hover {
-  border: 2px solid green;
+  border: 3px solid green;
 }
 
 .container-findteam li h2 {
@@ -415,6 +419,10 @@
 
 .container-findteam li p {
   margin: 5px 0;
+}
+
+.container-findteam {
+  margin-bottom: 5%;
 }
 
 .container-findteam li button {
@@ -444,6 +452,7 @@
   align-items: center;
   align-self: center;
   flex-direction: column;
+  margin-bottom: 5%;
 }
 
 .box-myteam {
@@ -526,7 +535,7 @@
   background-color: #da190b;
 }
 
-.delelte-myteam-button{
+.delelte-myteam-button {
   border: 1px solid red;
   background-color: red;
   color: white;
@@ -589,4 +598,32 @@
 
 .ok-myteam-button:hover {
   background-color: #45a049;
+}
+
+/*=========== HOME des===============*/
+.homeDescription-container {
+  background-image: linear-gradient(rgba(0, 0, 0, 0) 30%, rgb(0, 0, 0) 100%), url('../public/image/ai.webp');
+  background-color: red;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  min-width: none;
+  min-height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxDescription {
+  display: flex;
+  justify-content: space-around;
+  width: 100%; 
+}
+
+.content-description{
+  color: rgb(241, 239, 239);
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-size: 50px;
 }

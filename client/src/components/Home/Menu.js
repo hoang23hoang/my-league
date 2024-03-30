@@ -5,9 +5,13 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Menu() {
     const isLogined = localStorage.getItem('isLoggedIn');
+    const navigate = useNavigate();
+
 
     const [isLoggedIn, setIsLoggedIn] = useState(isLogined || false);
     useEffect(() => {
@@ -23,7 +27,7 @@ export default function Menu() {
                     console.log(response);
 
                     if (response) {
-                        await localStorage.setItem(isLoggedIn, isLoggedIn)
+                        localStorage.setItem(isLoggedIn, isLoggedIn)
                         setIsLoggedIn(true);
                     }
                 }
@@ -37,7 +41,9 @@ export default function Menu() {
 
     const handleLogout = () => {
         localStorage.removeItem('accessToken');
-        localStorage.removeItem('isLoggedIn')
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('isLoggedIn');
+        navigate('/'); 
         setIsLoggedIn(false);
     };
 

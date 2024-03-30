@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
     const [emailOrPhone, setEmailOrPhone] = useState('');
     const [password, setPassword] = useState('');
+    // const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -19,8 +21,9 @@ export default function Login() {
             console.log(response.data);
             if (response.data.accessToken) {
                 localStorage.setItem('accessToken', response.data.accessToken);
-                localStorage.setItem('isLoggedIn',true)
+                localStorage.setItem('isLoggedIn', true);
                 alert('Đăng nhập thành công!');
+                // navigate('/');
                 window.location.href = '/';
             } else {
                 throw new Error("Lỗi đăng nhập!");
@@ -29,6 +32,7 @@ export default function Login() {
             window.alert('Đăng nhập không thành công! Vui lòng kiểm tra lại thông tin.');
         }
     };
+
 
     return (
         <div className="register-login-container-form">
