@@ -124,13 +124,9 @@
 
 .box-player {
   background: #f0f0f0;
-  /* Màu nền cho mỗi cầu thủ, điều chỉnh theo ý bạn */
   padding: 10px;
-  /* Điều chỉnh theo ý bạn */
   border-radius: 5px;
-  /* Bo tròn góc */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Hiệu ứng đổ bóng, tùy chọn */
 }
 
 
@@ -454,6 +450,45 @@
   flex-direction: column;
   margin-bottom: 5%;
 }
+.no-team-message {
+  background-color: #f2f4f8;
+  color: #333; 
+  padding: 20px; 
+  margin: 20px; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  text-align: center; 
+  font-size: 18px; 
+  font-family: Arial, sans-serif; 
+}
+
+.create-team-button {
+  background-color: #007bff; 
+  color: white; 
+  padding: 10px 15px; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  margin-top: 20px;
+  display: inline-block; 
+  text-decoration: none;
+}
+
+.create-team-button a {
+  color: white;
+  text-decoration: none;
+  display: block; 
+}
+
+.create-team-button:hover, .create-team-button a:hover {
+  background-color: #0056b3; 
+}
+
+.create-team-button:hover {
+  background-color: #0056b3; 
+}
+
 
 .box-myteam {
   display: flex;
@@ -600,7 +635,7 @@
   background-color: #45a049;
 }
 
-/*=========== HOME des===============*/
+/*======================= ĐÂY LÀ CSS CHO HOME DESCRIPTION ==================*/
 .homeDescription-container {
   background-image: linear-gradient(rgba(0, 0, 0, 0) 30%, rgb(0, 0, 0) 100%), url('../public/image/ai.webp');
   background-color: red;

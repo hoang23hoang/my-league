@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const MyTeam = () => {
     const [teamData, setTeamData] = useState(null);
@@ -109,8 +109,8 @@ const MyTeam = () => {
             await axios.delete(`http://localhost:3001/teams/delete-team/${teamData._id}`, {
                 headers: { authorization: `Bearer ${token}` }
             });
-            setTeamData(null); 
-            navigate('/my-team'); 
+            setTeamData(null);
+            navigate('/my-team');
         } catch (error) {
             console.error('Error deleting team:', error);
         }
@@ -150,7 +150,14 @@ const MyTeam = () => {
     }
 
     if (!teamData) {
-        return <div>Bạn vẫn chưa có đội của riêng mình, hãy tạo ngay</div>;
+        if (!teamData) {
+            return (
+                <div className="no-team-message">
+                    Bạn vẫn chưa có đội của riêng mình, hãy tạo ngay   <br></br>
+                    <button className="create-team-button"><Link to='/create-team' >Tạo Đội</Link></button>
+                </div>
+            );
+        }
     }
 
     return (
